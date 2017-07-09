@@ -31,6 +31,7 @@ export default {
     display: flex;
     height: 1rem;
     color: #fff;
+    z-index: 999;
   }
   .header button{
     width: 1rem;

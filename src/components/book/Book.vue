@@ -6,6 +6,20 @@
         <swipe-item class="item2"></swipe-item>
         <swipe-item class="item3"></swipe-item>
       </swipe>
+      <div class="books">
+        <div v-for="(books,n) in bookList">
+          <h3>{{category[n]}}<a href="#">更多&gt;&gt;</a></h3>
+          <ul class="some-novel">
+            <li v-for="book in books">
+              <img :src="book.images.medium" :alt="book.title">
+              <p>{{book.title}}</p>
+            </li>
+          </ul>
+          <div class="loading" v-show="show">
+              <span><img src="../../assets/img/loading.gif"></span>
+          </div>
+        </div>
+      </div>
     <common-footer></common-footer>
   </div>
 </template>
@@ -14,12 +28,15 @@
 
   import CommonHeader from '../common/CommonHeader'
   import CommonFooter from '../common/CommonFooter'
+  import Axios from 'axios'
   import {Swipe, SwipeItem } from 'vue-swipe'
   Swipe.auto= false;
 export default {
   data() {
     return {
-
+      bookList:[],
+      category:["小说","童话","武侠","历史","科普"],
+      show:true
     }
   },
   components:{
@@ -30,6 +47,16 @@ export default {
   },
   mounted(){
     this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<']);
+    // var _this = this;
+    for (var i = 0; i < this.category.length; i++) {
+      Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?tag='+this.category[i]+'&count=6&start=0')
+        .then((res)=>{
+          // console.log(res.data.books[0].title);
+          this.bookList.push(res.data.books);
+          // this.show = false;
+      });
+    }
+      
   }
 }
 
@@ -64,5 +91,35 @@ export default {
   .item3 {
     background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
   }
-
+  .books{
+    padding: 0 .5rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  h3{
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    position: relative;
+  }
+  h3 a{
+    font-size: .6em;
+    /*margin-left: .5rem;*/
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  ul.some-novel{
+    /*padding: .3rem 0;*/
+  }
+  ul.some-novel li{
+    padding: .3rem .1rem 0;
+    float: left;
+  }
+  ul.some-novel li img{
+    width: 1.6rem;
+    height: 2.25rem;
+  }
+  ul.some-novel p{
+    text-align: center;
+  }
 </style>

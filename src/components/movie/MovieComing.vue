@@ -22,20 +22,37 @@
 <script>
 
   import Axios from 'axios'
-
-export default {
+  import $ from 'jquery'
+  export default {
   data() {
     return {
-      movieList:[]
+      movieList:[],
+      show:true
     }
   },
   mounted:function() {
-      Axios.get(API_PROXY+'https://api.douban.com/v2/movie/coming_soon?count=10&start=0')
-        .then((res)=>{
-          this.movieList = res.data.subjects;
+      this.loadData();
+      var _this = this;
+      $(window).scroll(function(){
+          var windowHeight = $(this).height();
+          var scrollTop = $(this).scrollTop();
+          var height = $(document).height();
+          if(windowHeight + scrollTop >= height){
+            _this.show = true;
+            _this.loadData();
+          };
       });
+  },
+  methods:{
+      loadData(){
+        var length = this.movieList.length;
+        Axios.get(API_PROXY+'https://api.douban.com/v2/movie/coming_soon?count=10&start='+length)
+          .then((res)=>{
+          this.movieList = this.movieList.concat(res.data.subjects);
+          this.show = false;
+      });
+      }
   }
-
 }
 
 </script>
