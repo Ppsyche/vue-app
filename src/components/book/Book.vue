@@ -8,17 +8,18 @@
       </swipe>
       <div class="books">
         <div v-for="(books,n) in bookList">
-          <h3>{{category[n]}}<a href="#">更多&gt;&gt;</a></h3>
+          <h3>{{category[n]}}<router-link :to="'/book/book_more/'+category[n]">更多&gt;&gt;</router-link></h3>
           <ul class="some-novel">
             <li v-for="book in books">
               <img :src="book.images.medium" :alt="book.title">
               <p>{{book.title}}</p>
             </li>
           </ul>
-          <div class="loading" v-show="show">
+          <!-- <div class="loading" v-show="show">
               <span><img src="../../assets/img/loading.gif"></span>
-          </div>
+          </div> -->
         </div>
+        <div class="more"><a href=":javascript">更多精彩&gt;&gt;</a></div>
       </div>
     <common-footer></common-footer>
   </div>
@@ -29,14 +30,15 @@
   import CommonHeader from '../common/CommonHeader'
   import CommonFooter from '../common/CommonFooter'
   import Axios from 'axios'
+  // import $ from 'jquery'
   import {Swipe, SwipeItem } from 'vue-swipe'
   Swipe.auto= false;
 export default {
   data() {
     return {
       bookList:[],
-      category:["小说","童话","武侠","历史","科普"],
-      show:true
+      category:["童话","小说","科普","奇幻"],
+      // show:true
     }
   },
   components:{
@@ -48,12 +50,13 @@ export default {
   mounted(){
     this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<']);
     // var _this = this;
+    var arr = new Array(this.category.length);
     for (var i = 0; i < this.category.length; i++) {
       Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?tag='+this.category[i]+'&count=6&start=0')
         .then((res)=>{
           // console.log(res.data.books[0].title);
           this.bookList.push(res.data.books);
-          // this.show = false;
+            // this.show = false;
       });
     }
       
@@ -82,14 +85,17 @@ export default {
 
   .item1 {
     background: url('https://img3.doubanio.com/lpic/s27102925.jpg');
+    background-size: cover;
   }
 
   .item2 {
     background: url('https://img3.doubanio.com/lpic/s6989253.jpg');
+    background-size: cover;
   }
 
   .item3 {
     background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
+    background-size: cover;
   }
   .books{
     padding: 0 .5rem;
@@ -110,6 +116,7 @@ export default {
   }
   ul.some-novel{
     /*padding: .3rem 0;*/
+    overflow: hidden;
   }
   ul.some-novel li{
     padding: .3rem .1rem 0;
@@ -121,5 +128,21 @@ export default {
   }
   ul.some-novel p{
     text-align: center;
+    width: 1.6rem;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .more{
+    height: .7rem;
+    text-align: center;
+    background: #0f0;
+  }
+  .more a{
+    color: #fff;
+    font-size: .3rem;
+    line-height: .7rem;
   }
 </style>
+ 

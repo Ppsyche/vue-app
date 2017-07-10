@@ -6,12 +6,14 @@ import MovieHot from '@/components/movie/MovieHot'
 import MovieComing from '@/components/movie/MovieComing'
 import MovieOne from '@/components/movie/MovieOne'
 import Music from '@/components/music/Music'
-import Book from '@/components/book/Book'
-import Photo from '@/components/photo/Photo'
-import CompA from '@/components/CompA'
 import MusicList from '@/components/music/MusicList'
 import MusicAlbums from '@/components/music/MusicAlbums'
+import Book from '@/components/book/Book'
+import BookMore from '@/components/book/BookMore'
+import BookOne from '@/components/book/BookOne'
+import Photo from '@/components/photo/Photo'
 import PhotoDetail from '@/components/photo/PhotoDetail'
+import CompA from '@/components/CompA'
 
 Vue.use(Router)
 
@@ -53,6 +55,14 @@ export default new Router({
     {
       path: '/book',
       component: Book,
+    },
+    {
+      path: '/book/book_more/:name',
+      component: BookMore,
+    },
+    {
+      path: '/book/book_one/:id',
+      component: BookOne,
     },
     {
       path: '/photo',

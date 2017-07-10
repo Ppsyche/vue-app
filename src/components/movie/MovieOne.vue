@@ -1,7 +1,7 @@
 <template>
   <div class="movie-one">
     <common-header></common-header>
-    <div class="move-details">
+    <div class="movie-details">
       <div class="img-box">
         <img :src="movieDetails.images.large" :alt="movieDetails.title">
         <h3>{{movieDetails.title}}</h3>
@@ -53,7 +53,7 @@ export default {
 <style scoped>
 
   @import "../../assets/css/reset.css";
-  .move-details{
+  .movie-details{
     margin-top: 1rem;
     padding: 0 .3rem;
   }
