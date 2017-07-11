@@ -13,7 +13,6 @@ import BookMore from '@/components/book/BookMore'
 import BookOne from '@/components/book/BookOne'
 import Photo from '@/components/photo/Photo'
 import PhotoDetail from '@/components/photo/PhotoDetail'
-import CompA from '@/components/CompA'
 
 Vue.use(Router)
 
@@ -67,10 +66,6 @@ export default new Router({
     {
       path: '/photo',
       component: Photo,
-    },
-    {
-      path: '/compa',
-      component: CompA,
     },
     {
       path:'/photo/photo_detail/:index',

@@ -8,18 +8,20 @@
       </swipe>
       <div class="books">
         <div v-for="(books,n) in bookList">
-          <h3>{{category[n]}}<router-link :to="'/book/book_more/'+category[n]">更多&gt;&gt;</router-link></h3>
+          <h3>{{categorys[n]}}<router-link :to="'/book/book_more/'+categorys[n]">更多&gt;&gt;</router-link></h3>
           <ul class="some-novel">
             <li v-for="book in books">
-              <img :src="book.images.medium" :alt="book.title">
-              <p>{{book.title}}</p>
+              <router-link :to="'/book/book_one/'+book.id">
+                <img :src="book.images.medium" :alt="book.title">
+                <p>{{book.title}}</p>
+              </router-link>
             </li>
           </ul>
           <!-- <div class="loading" v-show="show">
               <span><img src="../../assets/img/loading.gif"></span>
           </div> -->
         </div>
-        <div class="more"><a href=":javascript">更多精彩&gt;&gt;</a></div>
+        <div class="more"><a href="">更多精彩&gt;&gt;</a></div>
       </div>
     <common-footer></common-footer>
   </div>
@@ -38,7 +40,7 @@ export default {
     return {
       bookList:[],
       category:["童话","小说","科普","奇幻"],
-      // show:true
+      categorys:[],
     }
   },
   components:{
@@ -50,11 +52,11 @@ export default {
   mounted(){
     this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<']);
     // var _this = this;
-    var arr = new Array(this.category.length);
-    for (var i = 0; i < this.category.length; i++) {
+    for (let i = 0; i < this.category.length; i++) {
       Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?tag='+this.category[i]+'&count=6&start=0')
         .then((res)=>{
           // console.log(res.data.books[0].title);
+          this.categorys.push(this.category[i]);
           this.bookList.push(res.data.books);
             // this.show = false;
       });
