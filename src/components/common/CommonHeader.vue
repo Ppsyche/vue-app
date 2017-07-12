@@ -4,6 +4,7 @@
       <button @click="up">{{$store.state.nav}}</button>
     </slot>
     <h2>{{$store.state.title}}</h2>
+    <router-link to="/book"><i class="icon iconfont big">&#xe6d1;</i></router-link>
   </div>
 </template>
 
@@ -43,13 +44,19 @@ export default {
   .header h2{
     flex: 1;
     text-align: center;
-    text-indent: -1rem;
+    /*text-indent: -1rem;*/
     line-height: 1rem;
   }
   .header{
     position: fixed;
     top: 0;
     width: 100%;
+  }
+  .header a{
+    color: #fff;
+    width: 1rem;
+    line-height: 1rem;
+    text-align: center;
   }
 
 </style>

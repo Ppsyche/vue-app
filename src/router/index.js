@@ -5,9 +5,9 @@ import MovieTop250 from '@/components/movie/MovieTop250'
 import MovieHot from '@/components/movie/MovieHot'
 import MovieComing from '@/components/movie/MovieComing'
 import MovieOne from '@/components/movie/MovieOne'
-import Music from '@/components/music/Music'
-import MusicList from '@/components/music/MusicList'
-import MusicAlbums from '@/components/music/MusicAlbums'
+// import Music from '@/components/music/Music'
+// import MusicList from '@/components/music/MusicList'
+// import MusicAlbums from '@/components/music/MusicAlbums'
 import Book from '@/components/book/Book'
 import BookMore from '@/components/book/BookMore'
 import BookOne from '@/components/book/BookOne'
@@ -20,7 +20,7 @@ export default new Router({
   routes: [
     {
       path:'/movie',
-      redirect:'/movie/top250'
+      redirect:'/movie/hot'
     },
     {
       path: '/movie',
@@ -33,24 +33,24 @@ export default new Router({
     },
     {
       path: '/',
-      redirect:'/movie/top250'
+      redirect:'/movie/hot'
     },
     {
       path:'/movie/movie_one/:id',
       component: MovieOne
     },
-    {
-      path:'/music',
-      redirect:'/music/music_albums'
-    },
-    {
-      path: '/music',
-      component: Music,
-      children:[
-        {path:'/music/music_albums',component:MusicAlbums},
-        {path:'/music/music_list/:id',component:MusicList}
-      ]
-    },
+    // {
+    //   path:'/music',
+    //   redirect:'/music/music_albums'
+    // },
+    // {
+    //   path: '/music',
+    //   component: Music,
+    //   children:[
+    //     {path:'/music/music_albums',component:MusicAlbums},
+    //     {path:'/music/music_list/:id',component:MusicList}
+    //   ]
+    // },
     {
       path: '/book',
       component: Book,

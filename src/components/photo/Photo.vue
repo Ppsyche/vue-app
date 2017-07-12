@@ -6,6 +6,7 @@
         <router-link :to="'/photo/photo_detail/'+index"><img :src="photo.src" alt=""></router-link>
       </li>
     </ul>
+    <div class="nothing">┐(￣ー￣)┌没有了┐(￣ー￣)┌</div>
     <common-footer></common-footer>
   </div>
 </template>
@@ -15,10 +16,12 @@
   import CommonHeader from '../common/CommonHeader'
   import CommonFooter from '../common/CommonFooter'
   import Axios from 'axios'
+  import $ from 'jquery'
 
 export default {
   data() {
     return {
+      
     }
   },
   components:{
@@ -31,7 +34,35 @@ export default {
     Axios.get('static/photo-data.json').then((res)=>{
         this.$store.dispatch('photoList',res.data.photoData);
     });
-  }
+    // $("img").load(function(){
+      var imgNum = 2//一行摆几张图
+      var lineHight = new Array(imgNum);//每排的高度
+      var minHeight = 0;//高度最小的是哪排
+      var left = $('.photo-box li').outerWidth(true);
+      $('.photo-box li').width($('.photo-box').width()/2-left);
+      left = $('.photo-box li').outerWidth(true);
+      lineHight.fill(0,0,imgNum);
+      for (var i = 0; i < $(".photo-box li").length; i++){
+        minHeight = 0;
+        for(var j=1; j<lineHight.length; j++){
+          minHeight = lineHight[minHeight]>lineHight[j]?j:minHeight;
+        }
+        $('.photo-box li').eq(i).css({
+          "top":lineHight[minHeight],
+          "left":left*minHeight
+        });
+        lineHight[minHeight] += $('.photo-box li').eq(i).outerHeight(true);
+      }
+      //计算ul高度
+      var maxHeight = 0;
+      for(var j=1; j<lineHight.length; j++){
+        maxHeight = lineHight[maxHeight]>lineHight[j]?maxHeight:j;
+      }
+      $('.photo-box').height(lineHight[maxHeight]);
+
+    // })
+    
+  },
 }
 
 </script>
@@ -41,16 +72,33 @@ export default {
 
   @import "../../assets/css/reset.css";
   .photo-box{
-    margin:1rem 0;
-    overflow: hidden;
+    margin-top:1rem;
+    /*overflow: hidden;*/
+    position: relative;
+    width: 100%;
+    /*height: auto;*/
   }
   .photo-box li{
-    width: 50%;
-    float: left;
+    /*width: 45%;*/
+    /*float: left;*/
+    width: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    position: absolute;
+    margin: 2px;
   }
   .photo-box li img{
     width: 100%;
     height: 100%;
   }
+  .nothing{
+    margin-bottom: 1rem;
+    text-align: center;
+    line-height: 1rem;
 
+  }
 </style>
+
+
+

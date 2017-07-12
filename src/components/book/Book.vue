@@ -21,7 +21,7 @@
               <span><img src="../../assets/img/loading.gif"></span>
           </div> -->
         </div>
-        <div class="more"><a href="">更多精彩&gt;&gt;</a></div>
+        <div class="more"><a href="javascript:;">更多精彩&gt;&gt;</a></div>
       </div>
     <common-footer></common-footer>
   </div>
@@ -127,6 +127,9 @@ export default {
   ul.some-novel li img{
     width: 1.6rem;
     height: 2.25rem;
+  }
+  ul.some-novel li a{
+    color: black;
   }
   ul.some-novel p{
     text-align: center;

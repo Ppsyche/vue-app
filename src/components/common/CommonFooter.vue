@@ -1,10 +1,11 @@
 <template>
   <div class="footer" :style="{background:$store.state.bgColor}">
     <ul>
-      <li><router-link to="/movie">电影</router-link></li>
-      <li><router-link to="/music">音乐</router-link></li>
-      <li><router-link to="/book">书籍</router-link></li>
-      <li><router-link to="/photo">图片</router-link></li>
+      <li><router-link to="/movie"><i class="icon iconfont">&#xe70e;</i></router-link></li>
+      <!-- <li><router-link to="/music">音乐</router-link></li> -->
+      <li><router-link to="/book"><i class="icon iconfont">&#xe610;</i></router-link></li>
+      <!-- <li><router-link to="/book"><i class="icon iconfont big">&#xe6d1;</i></router-link></li> -->
+      <li><router-link to="/photo"><i class="icon iconfont">&#xe61c;</i></router-link></li><li><router-link to="/photo"><i class="icon iconfont">&#xe694;</i></router-link></li></router-link></li>
     </ul>
   </div>
 </template>
@@ -25,6 +26,8 @@ export default {
 <style scoped>
 
   @import "../../assets/css/reset.css";
+  @import "../../assets/font/iconfont.css";
+  /*@import "../../assets/font/demo.css";*/
   .footer{
     height: 1rem;
     color: #fff;
@@ -49,5 +52,8 @@ export default {
   }
   .footer a.router-link-active{
     color: #fff;
+  }
+  .footer .icon{
+    font-size: 2em;
   }
 </style>

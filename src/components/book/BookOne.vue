@@ -13,7 +13,7 @@
         <p>翻译：<span v-for="translator in bookDetails.translator">{{translator}}&nbsp;&nbsp;</span></p>
         <p>出版社：{{bookDetails.publisher}}</p>
         <p>页码：{{bookDetails.pages}}</p>
-        <p>定价：{{bookDetails.price}}元</p>
+        <p>定价：{{bookDetails.price}}</p>
       </div>
       <div class="abstract">
         <p>简介：</p>

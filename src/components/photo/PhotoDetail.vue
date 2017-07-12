@@ -27,10 +27,10 @@ export default {
   },
   methods:{
     next(){
-        this.index = (this.index+1)%24;
+        this.index = (this.index+1)%58;
     },
     prev(){
-        this.index = (this.index+23)%24;
+        this.index = (this.index+57)%58;
     }
   }
 }
