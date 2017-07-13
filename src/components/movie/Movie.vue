@@ -1,7 +1,7 @@
 <template>
   <div class="movie">
     <common-header>
-      <button>{{$store.state.nav}}</button>
+      <button slot="btn">{{$store.state.nav}}</button>
     </common-header>
     <movie-nav></movie-nav>
     <!--<movie-top250></movie-top250>-->

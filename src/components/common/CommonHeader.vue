@@ -1,10 +1,14 @@
 <template>
   <div class="header" :style="{background:$store.state.bgColor}">
-    <slot>
+    <slot name="btn">
       <button @click="up">{{$store.state.nav}}</button>
     </slot>
-    <h2>{{$store.state.title}}</h2>
-    <router-link to="/book"><i class="icon iconfont big">&#xe6d1;</i></router-link>
+    <slot name="h2">
+      <h2>{{$store.state.title}}</h2>
+    </slot>
+    <slot name="icon">
+      <router-link to="/search"><i class="icon iconfont big">&#xe6d1;</i></router-link>
+    </slot>
   </div>
 </template>
 
