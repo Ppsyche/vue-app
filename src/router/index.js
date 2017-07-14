@@ -14,7 +14,9 @@ import BookOne from '@/components/book/BookOne'
 import Photo from '@/components/photo/Photo'
 import PhotoDetail from '@/components/photo/PhotoDetail'
 import Search from '@/components/search/Search'
-import SearchResult from '@/components/search/SearchResult'
+import SearchSuggest from '@/components/search/SearchSuggest'
+import SearchMovie from '@/components/search/SearchMovie'
+import SearchBook from '@/components/search/SearchBook'
 
 Vue.use(Router)
 
@@ -73,16 +75,17 @@ export default new Router({
       path:'/photo/photo_detail/:index',
       component: PhotoDetail
     },
-    // {
-    //   path:'/search',
-    //   redirect:'/search/search_movie/:name'
-    // },
+    {
+      path:'/search',
+      redirect:'/search/suggest'
+    },
     {
       path: '/search',
-      component: Search,
+      component:Search,
       children: [
-        { path: "/search/search_movie/:name", component: SearchResult },
-        { path: "/search/search_book/:name", component: SearchResult }
+        { path: "/search/suggest", component: SearchSuggest },
+        { path: "/search/search_movie/:name", component: SearchMovie },
+        { path: "/search/search_book/:name", component: SearchBook }
       ]
     }
   ]

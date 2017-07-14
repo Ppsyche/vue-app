@@ -7,7 +7,7 @@
       <h2>{{$store.state.title}}</h2>
     </slot>
     <slot name="icon">
-      <router-link to="/search"><i class="icon iconfont big">&#xe6d1;</i></router-link>
+      <router-link to="/search" v-show="$store.state.bol"><i class="icon iconfont big">&#xe6d1;</i></router-link>
     </slot>
   </div>
 </template>
@@ -50,6 +50,10 @@ export default {
     text-align: center;
     /*text-indent: -1rem;*/
     line-height: 1rem;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+
   }
   .header{
     position: fixed;
@@ -61,6 +65,9 @@ export default {
     width: 1rem;
     line-height: 1rem;
     text-align: center;
+    /*float: right;*/
+    position: absolute;
+    right: 0;
   }
 
 </style>

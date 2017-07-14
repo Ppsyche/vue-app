@@ -13,6 +13,7 @@ const state = {
   title:'movie',
   bgColor:'rgb(33, 150, 243)',
   nav:'首页',
+  bol:true,
   photoList:[]
 }
 
@@ -22,6 +23,7 @@ const mutations = {
     state.title = status[0];
     state.bgColor = status[1];
     state.nav = status[2];
+    state.bol = status[3];
   },
   photoList(state,status){
     state.photoList = status;

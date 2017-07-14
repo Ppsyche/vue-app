@@ -1,6 +1,5 @@
 <template>
   <div class="book">
-    <common-header></common-header>
     <div class="books">
       <div class="book-list" v-for="book in bookList">
         <router-link :to="'/book/book_one/'+book.id">
@@ -16,17 +15,11 @@
         </router-link>
       </div>
     </div>
-    <div class="loading" v-show="show">
-        <span><img src="../../assets/img/loading.gif"></span>
-    </div>
-    <common-footer></common-footer>
   </div>
 </template>
 
 <script>
 
-  import CommonHeader from '../common/CommonHeader'
-  import CommonFooter from '../common/CommonFooter'
   import Axios from 'axios'
   import $ from 'jquery'
 
@@ -34,39 +27,26 @@ export default {
   data() {
     return {
       bookList:[],
-      show:true
     }
   },
   components:{
-    CommonHeader,
-    CommonFooter,
   },
   mounted:function() {
-      this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<',true]);
-      this.loadData();
-      var _this = this;
-      $(window).scroll(function(){
-          var windowHeight = $(this).height();
-          var scrollTop = $(this).scrollTop();
-          var height = $(document).height();
-          if(windowHeight + scrollTop >= height){
-            _this.show = true;
-            _this.loadData();
-          };
-      });
-  },
-  methods:{
-      loadData(){
-        var length = this.bookList.length;
-        Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?tag='+this.$route.params.name+'&count=10&start='+length)
+      this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',false]);
+    Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?q='+this.$route.params.name)
           .then((res)=>{
-          // console.log(res.data);
-          // console.log(res.data.subjects[0].id);
-          this.bookList = this.bookList.concat(res.data.books);
-          this.show = false;
+          this.bookList = res.data.books;
       });
-      }
   },
+  watch:{
+    '$route'(to,from){
+      Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?q='+this.$route.params.name)
+            .then((res)=>{
+            this.bookList = res.data.books;
+        });
+    }
+  }
+
 }
 
 </script>
@@ -105,9 +85,4 @@ export default {
     overflow: hidden;
     white-space: nowrap;
   }
-  .loading{
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
 </style>

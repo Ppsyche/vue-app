@@ -18,6 +18,9 @@ export default {
   components:{
     CommonHeader,
   },
+  mounted(){
+    this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',false]);
+  },
   computed:{
     bgStyle(){
       return {

@@ -50,7 +50,7 @@ export default {
     SwipeItem
   },
   mounted(){
-    this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<']);
+    this.$store.dispatch('changeTitle',['book','rgb(121, 85, 72)','<',true]);
     // var _this = this;
     for (let i = 0; i < this.category.length; i++) {
       Axios.get(API_PROXY+'https://api.douban.com/v2/book/search?tag='+this.category[i]+'&count=6&start=0')

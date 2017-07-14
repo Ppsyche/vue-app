@@ -30,7 +30,7 @@ export default {
     MovieTop250
   },
   mounted(){
-    this.$store.dispatch('changeTitle',['movie','rgb(33, 150, 243)','首页']);
+    this.$store.dispatch('changeTitle',['movie','rgb(33, 150, 243)','首页',true]);
   }
 }
 
