@@ -27,7 +27,7 @@
     }
   },
   mounted:function() {
-    this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',false]);
+    this.$store.dispatch('changeTitle',['search','rgb(0, 150, 136)','<',true]);
     Axios.get(API_PROXY+'https://api.douban.com/v2/movie/search?q='+this.$route.params.name)
           .then((res)=>{
           this.movieList = res.data.subjects;

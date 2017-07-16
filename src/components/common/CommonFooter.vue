@@ -5,7 +5,7 @@
       <!-- <li><router-link to="/music">音乐</router-link></li> -->
       <li><router-link to="/book"><i class="icon iconfont">&#xe610;</i></router-link></li>
       <!-- <li><router-link to="/book"><i class="icon iconfont big">&#xe6d1;</i></router-link></li> -->
-      <li><router-link to="/photo"><i class="icon iconfont">&#xe61c;</i></router-link></li><li><router-link to="/photo"><i class="icon iconfont">&#xe694;</i></router-link></li></router-link></li>
+      <li><router-link to="/photo"><i class="icon iconfont">&#xe61c;</i></router-link></li><li><router-link to="/user"><i class="icon iconfont">&#xe694;</i></router-link></li></router-link></li>
     </ul>
   </div>
 </template>

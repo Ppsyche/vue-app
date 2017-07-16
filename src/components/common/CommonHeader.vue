@@ -7,7 +7,7 @@
       <h2>{{$store.state.title}}</h2>
     </slot>
     <slot name="icon">
-      <router-link to="/search" v-show="$store.state.bol"><i class="icon iconfont big">&#xe6d1;</i></router-link>
+      <router-link to="/search" v-show="$store.state.bol" class="right"><i class="icon iconfont big">&#xe6d1;</i></router-link>
     </slot>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
     top: 0;
     width: 100%;
   }
-  .header a{
+  .header .right{
     color: #fff;
     width: 1rem;
     line-height: 1rem;

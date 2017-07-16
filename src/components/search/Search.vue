@@ -29,7 +29,7 @@ export default {
     CommonHeader,
   },
   mounted(){
-    this.$store.dispatch('changeTitle',['search','rgb(0, 150, 136)','<']);
+    this.$store.dispatch('changeTitle',['search','rgb(0, 150, 136)','<',true]);
   },
   methods:{
       focus:function(){
