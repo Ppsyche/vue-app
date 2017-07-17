@@ -3,16 +3,16 @@
 > A Vue.js project
 
 ## 效果预览
-![](https://github.com/Psychee/vue-app/tree/master/gif/1.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/2.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/3.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/4.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/5.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/6.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/7.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/8.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/9.gif)
-![](https://github.com/Psychee/vue-app/tree/master/gif/10.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/1.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/2.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/3.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/4.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/5.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/6.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/7.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/8.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/9.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/10.gif)
 
 
 
