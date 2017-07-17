@@ -2,6 +2,20 @@
 
 > A Vue.js project
 
+## 效果预览
+![](https://github.com/Psychee/vue-app/gif/1.gif)
+![](https://github.com/Psychee/vue-app/gif/2.gif)
+![](https://github.com/Psychee/vue-app/gif/3.gif)
+![](https://github.com/Psychee/vue-app/gif/4.gif)
+![](https://github.com/Psychee/vue-app/gif/5.gif)
+![](https://github.com/Psychee/vue-app/gif/6.gif)
+![](https://github.com/Psychee/vue-app/gif/7.gif)
+![](https://github.com/Psychee/vue-app/gif/8.gif)
+![](https://github.com/Psychee/vue-app/gif/9.gif)
+![](https://github.com/Psychee/vue-app/gif/10.gif)
+
+
+
 ## Build Setup
 
 ``` bash
