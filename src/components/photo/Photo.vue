@@ -3,7 +3,7 @@
     <common-header></common-header>
     <ul class="photo-box">
       <li v-for="(photo,index) in $store.state.photoList">
-        <router-link :to="'/photo/photo_detail/'+index"><img :src="photo.src" alt=""></router-link>
+        <router-link :to="'/photo/photo_detail/'+index"><img :src="photo.srcc" :data-img="photo.src" alt=""></router-link>
       </li>
     </ul>
     <div class="nothing">┐(￣ー￣)┌没有了┐(￣ー￣)┌</div>
@@ -61,11 +61,30 @@ export default {
         }
         $('.photo-box').height(lineHight[maxHeight]);
       },1000);
-      
-
     // })
+    this.showImg();
+    var _this=this;
+    window.onscroll=function(){
+      _this.showImg();
+    }
     
   },
+  methods:{
+    showImg(){
+      $("img").each(function(){
+        if($(this).attr('isLoaded')){
+          return;
+        }
+        var scrollH = $(window).scrollTop(),
+               winH = $(window).height(),
+                top = $(this).offset().top;
+        if(top < winH + scrollH){
+          $(this).attr('src', $(this).attr('data-img'));
+          $(this).attr('isLoaded', true);
+        }   
+      })
+    }
+  }
 }
 
 </script>
