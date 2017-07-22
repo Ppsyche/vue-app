@@ -31,45 +31,45 @@ export default {
   mounted(){
     this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',true]);
 
-      Axios.get('static/photo-data.json').then((res)=>{
-          this.$store.dispatch('photoList',res.data.photoData);
-      });
-    // window.load(function(){
-      setTimeout(function(){
-        var imgNum = 2//一行摆几张图
-        var lineHight = new Array(imgNum);//每排的高度
-        var minHeight = 0;//高度最小的是哪排
-        var left = $('.photo-box li').outerWidth(true);
-        $('.photo-box li').width($('.photo-box').width()/2-left);
-        left = $('.photo-box li').outerWidth(true);
-        lineHight.fill(0,0,imgNum);
-        for (var i = 0; i < $(".photo-box li").length; i++){
-          minHeight = 0;
-          for(var j=1; j<lineHight.length; j++){
-            minHeight = lineHight[minHeight]>lineHight[j]?j:minHeight;
-          }
-          $('.photo-box li').eq(i).css({
-            "top":lineHight[minHeight],
-            "left":left*minHeight
-          });
-          lineHight[minHeight] += $('.photo-box li').eq(i).outerHeight(true);
-        }
-        //计算ul高度
-        var maxHeight = 0;
-        for(var j=1; j<lineHight.length; j++){
-          maxHeight = lineHight[maxHeight]>lineHight[j]?maxHeight:j;
-        }
-        $('.photo-box').height(lineHight[maxHeight]);
-      },1000);
-    // })
-    this.showImg();
+    Axios.get('static/photo-data.json').then((res)=>{
+        this.$store.dispatch('photoList',res.data.photoData);
+    });
     var _this=this;
+    setTimeout(function(){
+      _this.waterfall();
+      _this.showImg();
+    },1000);  
     window.onscroll=function(){
       _this.showImg();
-    }
-    
+    }   
   },
   methods:{
+    waterfall(){
+      var imgNum = 2//一行摆几张图
+      var lineHight = new Array(imgNum);//每排的高度
+      var minHeight = 0;//高度最小的是哪排
+      var left = $('.photo-box li').outerWidth(true);
+      $('.photo-box li').width($('.photo-box').width()/2-left);
+      left = $('.photo-box li').outerWidth(true);
+      lineHight.fill(0,0,imgNum);
+      for (var i = 0; i < $(".photo-box li").length; i++){
+        minHeight = 0;
+        for(var j=1; j<lineHight.length; j++){
+          minHeight = lineHight[minHeight]>lineHight[j]?j:minHeight;
+        }
+        $('.photo-box li').eq(i).css({
+          "top":lineHight[minHeight],
+          "left":left*minHeight
+        });
+        lineHight[minHeight] += $('.photo-box li').eq(i).outerHeight(true);
+      }
+      //计算ul高度
+      var maxHeight = 0;
+      for(var j=1; j<lineHight.length; j++){
+        maxHeight = lineHight[maxHeight]>lineHight[j]?maxHeight:j;
+      }
+      $('.photo-box').height(lineHight[maxHeight]);
+    },
     showImg(){
       $("img").each(function(){
         if($(this).attr('isLoaded')){
