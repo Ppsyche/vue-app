@@ -1,7 +1,7 @@
 <template>
   <div class="movie">
     <common-header>
-      <router-link slot="icon" to="/" tag="button" class="btn">
+      <router-link slot="icon" to="/user/user_set" tag="button" class="btn">
       设置</router-link>
     </common-header>
     <div class="top">
@@ -76,7 +76,6 @@ export default {
 <style scoped>
 
   @import "../../assets/css/reset.css";
-  /*@import "../../assets/lib/bootstrap/css/bootstrap.css";*/
   .btn{
     color: #fff;
     width: 1rem;
