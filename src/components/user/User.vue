@@ -5,7 +5,8 @@
       设置</router-link>
     </common-header>
     <div class="top">
-      <img src="../../assets/img/user.jpeg" alt="">
+      <router-link to="/user/user_me"><img src="../../assets/img/user.jpeg" alt=""></router-link>
+      
       <div class="name-box">
         <p class="name">用户名</p>
         <p class="deng">LV : 5</p>
@@ -27,20 +28,24 @@
       </div>
     </div>
     <div class="nav-list">
-      <div class="nav-top">
+      <div>
         <p>我的VIP<span>&gt;</span></p>
         <p>我的用户币<span>&gt;</span></p>
       </div>
-      <div class="nav-center">
+      <div>
         <p>消息通知<span>&gt;</span></p>
+        <!-- <p>消息通知(可用)<span>&gt;</span></p> -->
         <p>我的订阅<span>&gt;</span></p>
         <p>我的回复<span>&gt;</span></p>
         <p>阅读记录<span>&gt;</span></p>
       </div>
-      <div class="nav-bottom">
+      <div>
         <p>我的反馈<span>&gt;</span></p>
         <p>我的商城<span>&gt;</span></p>
         <p>邀请好友<span>&gt;</span></p>
+      </div>
+      <div>
+        <p>作者详情<span>&gt;</span></p>
       </div>
     </div>
     <common-footer></common-footer>
@@ -148,6 +153,10 @@ export default {
     float: right;
     font-weight: bolder;
   }
+  /*.nav-list p span.num{
+    float: right;
+    font-weight: 400;
+  }*/
 
 
 </style>

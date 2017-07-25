@@ -19,6 +19,7 @@ import SearchMovie from '@/components/search/SearchMovie'
 import SearchBook from '@/components/search/SearchBook'
 import User from '@/components/user/User'
 import UserSet from '@/components/user/UserSet'
+import UserMe from '@/components/user/UserMe'
 
 Vue.use(Router)
 
@@ -97,6 +98,10 @@ export default new Router({
     {
       path:'/user/user_set',
       component: UserSet
+    },
+    {
+      path:'/user/user_me',
+      component: UserMe
     },
   ]
 })
