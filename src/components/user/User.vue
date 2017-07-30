@@ -4,14 +4,21 @@
       <router-link slot="icon" to="/user/user_set" tag="button" class="btn">
       设置</router-link>
     </common-header>
-    <div class="top">
-      <router-link to="/user/user_me"><img src="../../assets/img/user.jpeg" alt=""></router-link>
-      
+    <div class="top1" v-show="this.flag">
+      <router-link to="/user/user_me"><img src="../../assets/img/user.jpeg" alt=""></router-link>   
       <div class="name-box">
         <p class="name">用户名</p>
         <p class="deng">LV : 5</p>
       </div>
       <p class="sign-in">签到</p>
+    </div>
+    <div class="top2" v-show="!this.flag">
+      <router-link to="/user/user_login">
+        <img src="../../assets/img/user.jpeg" alt="">  
+        <p class="login">
+          登录查看更多
+        </p>
+      </router-link> 
     </div>
     <div class="roll">
       <div class="one">
@@ -60,7 +67,7 @@
 export default {
   data() {
     return {
-      
+      flag:false,
     }
   },
   components:{
@@ -90,31 +97,33 @@ export default {
     position: absolute;
     right: 0;
   }
-  .top{
+  .top1,.top2{
     margin-top: 1rem;
     background: #439865;
+  }
+  .top1{   
     padding: .1rem .3rem;
     height: 1.7rem;
   }
-  .top img{
+  .top1 img{
     width: 1.3rem;
     height:1.3rem;
     border-radius: 50%;
     border: 3px solid #ccc;
     float: left;
   }
-  .top .name-box{
+  .top1 .name-box{
     float: left;
     margin: .2rem 0 0 .2rem;
   }
-  .top .name-box p{
+  .top1 .name-box p{
     color: #fff;
   }
-  .top .name{
+  .top1 .name{
     font-size: 1.3em;
     margin-bottom: .1rem;
   }
-  .top .sign-in{
+  .top1 .sign-in{
     background: orange;
     color: #fff;
     float: right;
@@ -123,6 +132,23 @@ export default {
     text-align: center;
     border-radius: .2rem;
     margin: .5rem .2rem 0 0;
+  }
+  .top2{   
+    padding: .2rem .3rem;
+    height: 2.2rem;
+    text-align: center;
+  }
+  .top2 img{
+    width: 1.5rem;
+    height:1.5rem;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    margin: 0 auto;
+  }
+  .top2 p{
+    color: #fff;
+    font-size: 1.1em;
+    margin-top: .1rem;
   }
   .roll{
     display: flex;

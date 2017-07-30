@@ -20,6 +20,8 @@ import SearchBook from '@/components/search/SearchBook'
 import User from '@/components/user/User'
 import UserSet from '@/components/user/UserSet'
 import UserMe from '@/components/user/UserMe'
+import UserLogin from '@/components/user/UserLogin'
+import UserReg from '@/components/user/UserReg'
 
 Vue.use(Router)
 
@@ -102,6 +104,14 @@ export default new Router({
     {
       path:'/user/user_me',
       component: UserMe
+    },
+    {
+      path:'/user/user_login',
+      component: UserLogin
+    },
+    {
+      path:'/user/user_reg',
+      component: UserReg
     },
   ]
 })
