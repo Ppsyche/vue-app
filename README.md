@@ -4,10 +4,10 @@
 
 # 运行项目
 clone项目到本地，进入项目文件夹，安装依赖
+```
 git clone https://github.com/Psychee/vue-app.git
 cd vue-app
 npm install
-```
 然后运行项目
 npm run dev
 ```
