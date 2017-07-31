@@ -5,41 +5,84 @@
 			<img src="../../assets/img/user.jpeg" alt="">
 			<p>豆瓣看看</p>
 		</div>
-		<form action="">
+		<p class="show">
+			<span v-if="flag==1">手机号不能为空</span>
+			<span v-else-if="flag==2">密码不能为空</span>
+			<span v-else-if="flag==3">密码错误</span>
+			<span v-else-if="flag==4">登录成功</span>
+		</p>
+		<div class="form">
 			<div class="tel">
-				<span>手机号：</span><input type="text" name="tel" >
+				<span>手机号：</span><input type="text" name="tel" placeholder="请输入手机号" v-model="tel">
 			</div>
 			<div class="psd">
-				<span>密  码：</span><input type="password" name="psd">
+				<span>密  码：</span><input type="password" name="psd"  placeholder="请输入密码" v-model="psd">
 			</div>
 			
-			<input value="登录" class="button" type="submit" />
-		</form>
+			<!-- <input value="登录" class="button" type="submit" /> -->
+			<button class="button" @click="check">登录</button>
+		</div>
 		<div class="other">
-			<a href="#">忘记密码</a>
+			<a href="javascript:;">忘记密码</a>
 			<router-link to="/user/user_reg">注册</router-link>
 		</div>
 	</div>
 </template>
 <script>
 
+import Axios from 'axios'
 import CommonHeader from '../common/CommonHeader'
 export default {
-  data() {
-    return {
-    	// tel:"请输入手机号",
-    	// psd:"请输入密码",
-    }
-  },
-  components:{
-  	CommonHeader,
-  },
-  mounted(){
-  	this.$store.dispatch('changeTitle',['login','#439865','<'],false);
-  },
-  methods:{
-      
-  }
+  	data() {
+    	return {
+    		tel:"",
+    		psd:"",
+    		flag:0
+	    }
+  	},
+  	components:{
+  		CommonHeader,
+  	},
+  	mounted(){
+  		this.$store.dispatch('changeTitle',['login','#439865','<'],false);
+  	},
+ 	methods:{
+      	check:function () {
+      		var tel=this.tel;
+      		var psd=this.psd;
+      		if(tel==""){
+      			this.flag=1;
+      		}else if(psd==""){
+      			this.flag=2;
+      		}else{
+      			this.login_user();
+      		}
+      		
+      	},
+      	login_user:function () {
+      		var tel=this.tel;
+      		var psd=this.psd;
+      		Axios.get('http://localhost:3000/login_user',{
+      			params:{
+      				tel:tel,
+      				psd:psd
+      			}
+      		}).then((res)=>{
+      			console.log("sgsdfg");
+      			console.log(res.data);
+				if(res.data==3){
+					this.flag=res.data;
+					// this.$router.push("/user/user_login");
+					console.log(res.data);
+				}else{
+					console.log(res.data);
+					this.flag=4;
+				}
+			}).catch((error)=>{
+			    console.log(error);
+			});
+      	},
+  	}
 }
 
 </script>
@@ -56,7 +99,7 @@ export default {
 		padding-top: 1rem;
 		width: 100%;
 		text-align: center;
-		margin-bottom: .6rem;
+		/*margin-bottom: .6rem;*/
 	}
 	.logo img{
 		width: 1.5rem;
@@ -69,7 +112,14 @@ export default {
 		font-size: 1.3em;
 		color: #fff;
 	}
-	form div{
+	.show{
+		width: 5rem;
+		height: .4rem;
+		margin: 0 auto;
+		padding: .1rem .9rem;
+		color: #ec4a4a;
+	}
+	.form div{
 		display: block;
 		width: 4.4rem;
 		height: .4rem;
@@ -81,11 +131,11 @@ export default {
 		padding: .1rem .3rem;
 		color: #dcfffe;
 	}
-	form div span{
+	.form div span{
 		display: inline-block;
 		width: 1rem;
 	}
-	form div input{
+	.form div input{
 		display: inline-block;
 		border: 0;
 		background: #76cb98;
@@ -93,7 +143,19 @@ export default {
 		width: 3.4rem;
 		outline: none;
 	}
-	/*form input{
+	.form div input::-webkit-input-placeholder {
+		color:#98edba;
+	}
+	.form div input:-moz-placeholder {
+		color:#98edba;
+	}
+	.form div input::-moz-placeholder {
+		color:#98edba;
+	}
+	.form div input:-ms-input-placeholder {
+		color:#98edba;
+	}
+	/*.form input{
 		display: block;
 		width: 4.4rem;
 		height: .4rem;
@@ -105,7 +167,7 @@ export default {
 		padding: .1rem .3rem;
 		color: #dcfffe;
 	}*/
-	form .button{
+	.form .button{
 		display: block;
 		width: 5rem;
 		height: .6rem;
