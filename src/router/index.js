@@ -22,6 +22,9 @@ import UserSet from '@/components/user/UserSet'
 import UserMe from '@/components/user/UserMe'
 import UserLogin from '@/components/user/UserLogin'
 import UserReg from '@/components/user/UserReg'
+import UserName from '@/components/user/UserName'
+import UserSex from '@/components/user/UserSex'
+import UserEmail from '@/components/user/UserEmail'
 
 Vue.use(Router)
 
@@ -112,6 +115,18 @@ export default new Router({
     {
       path:'/user/user_reg',
       component: UserReg
+    },
+    {
+      path:'/user/user_me/user_name',
+      component: UserName
+    },
+    {
+      path:'/user/user_me/user_sex',
+      component: UserSex
+    },
+    {
+      path:'/user/user_me/user_email',
+      component: UserEmail
     },
   ]
 })

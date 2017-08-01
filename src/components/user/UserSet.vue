@@ -26,8 +26,8 @@
         <p>检查版本更新<span class="num">版本号：3.3.3</span></p>
         <p>关于我<span>&gt;</span></p>
     </div>
-    <div class="exit">
-      <router-link to="/user" tag="button">退出登录</router-link>
+    <div class="exit" v-show="this.flag">
+      <button to="/user" @click="exit">退出登录</button>
     </div>
   </div>
 
@@ -40,7 +40,7 @@
 export default {
   data() {
     return{
-
+      flag:false
     }
   },
   components:{
@@ -49,9 +49,18 @@ export default {
   },
   mounted(){
     this.$store.dispatch('changeTitle',['设置','#439865','<'],false);
+    if(document.cookie){
+      this.flag=true;
+    }else{
+      this.flag=false;
+    }
   },
   methods:{
-
+    exit:function () {
+      document.cookie = "logined=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "login_id=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      this.$router.push("/user");
+    }
   },
   
 }

@@ -1,14 +1,15 @@
 <template>
   <div class="movie">
     <common-header>
+      <button slot="btn" @click="up">{{$store.state.nav}}</button>
       <router-link slot="icon" to="/user/user_set" tag="button" class="btn">
       设置</router-link>
     </common-header>
     <div class="top1" v-show="this.flag">
       <router-link to="/user/user_me"><img src="../../assets/img/user.jpeg" alt=""></router-link>   
       <div class="name-box">
-        <p class="name">用户名</p>
-        <p class="deng">LV : 5</p>
+        <p class="name">{{ user_all.name }}</p>
+        <p class="deng">LV : {{ user_all.lv }}</p>
       </div>
       <p class="sign-in">签到</p>
     </div>
@@ -62,12 +63,15 @@
 
 <script>
 
+  import Axios from 'axios'
   import CommonHeader from '../common/CommonHeader'
   import CommonFooter from '../common/CommonFooter'
 export default {
   data() {
     return {
       flag:false,
+      login_id:0,
+      user_all:{}
     }
   },
   components:{
@@ -76,9 +80,36 @@ export default {
   },
   mounted(){
     this.$store.dispatch('changeTitle',['user','#439865','<'],true);
+    // console.log(document.cookie);
+    if(document.cookie){
+      this.flag=true;
+      var arr=document.cookie.split(";")[1];
+      var new_arr=arr.split("=")[1];
+      this.login_id=new_arr;
+      this.user_by_id();
+    }else{
+      this.flag=false;
+    }
+    // var _this=this;
+    
   },
   methods:{
-      
+    up:function(){
+      this.$router.push("/");
+    },
+    user_by_id:function(){
+      Axios.get("http://localhost:3000/user_by_id",{
+        params:{
+          id:this.login_id
+        }
+      }).then((res)=>{
+        // console.log(res.data);
+        this.user_all=JSON.parse(res.data);
+        // console.log(JSON.parse(res.data));
+      }).catch((error)=>{
+          console.log(error);
+      });
+    }
   }
 }
 

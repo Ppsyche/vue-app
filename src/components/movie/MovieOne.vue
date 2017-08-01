@@ -1,6 +1,13 @@
 <template>
   <div class="movie-one">
-    <common-header></common-header>
+    <common-header>
+      <button slot="icon" class="btn" v-if="!this.flag" @click="collect">
+        <i class="icon iconfont big">&#xe572;</i>  
+      </button>
+      <button slot="icon" class="btn" v-if="this.flag" @click="nocollect">
+        <i class="icon iconfont big">&#xe630;</i>
+      </button>
+    </common-header>
     <div class="movie-details">
       <div class="img-box">
         <img :src="movieDetails.images.large" :alt="movieDetails.title">
@@ -30,7 +37,8 @@
 export default {
   data() {
     return {
-      movieDetails:[]
+      movieDetails:[],
+      flag:false,
     }
   },
   components:{
@@ -44,6 +52,39 @@ export default {
         // console.log(res.data.writer);
         this.movieDetails = res.data;
     });
+  },
+  methods:{
+    collect:function(){
+      if(document.cookie){
+        this.flag=true;
+        var arr=document.cookie.split(";")[1];
+        var new_arr=arr.split("=")[1];
+        this.login_id=new_arr;
+        this.find_movie();
+      }else{
+        this.$router.push("/user/user_login");
+      }
+      
+    },
+    nocollect:function(){
+      this.flag=false;
+    },
+    find_movie:function(){
+      console.log(this.movieDetails.title);
+      Axios.get("http://localhost:3000/find_movie",{
+        params:{
+          m_id:this.$route.params.id,
+          m_name:this.movieDetails.title,
+          u_id:this.login_id
+        }
+      }).then((res)=>{
+        // console.log(res.data);
+        this.user_all=JSON.parse(res.data);
+        // console.log(JSON.parse(res.data));
+      }).catch((error)=>{
+          console.log(error);
+      });
+    }
   }
 }
 
@@ -72,5 +113,17 @@ export default {
   }
   .peoples{
     border-bottom: 1px solid #000;
+  }
+  .btn{
+    color: #fff;
+    width: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    /*float: right;*/
+    position: absolute;
+    right: 0;
+  }
+  .btn i{
+    font-size: 2em;
   }
 </style>

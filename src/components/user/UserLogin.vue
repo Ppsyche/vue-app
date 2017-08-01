@@ -1,6 +1,8 @@
 <template>
 	<div class="login">
-		<common-header></common-header>
+		<common-header>
+			<!-- <button slot="btn" @click="up">{{$store.state.nav}}</button> -->
+		</common-header>
 		<div class="logo">
 			<img src="../../assets/img/user.jpeg" alt="">
 			<p>豆瓣看看</p>
@@ -44,9 +46,15 @@ export default {
   		CommonHeader,
   	},
   	mounted(){
+  		if(document.cookie){
+  			this.$router.push("/user");
+  		}
   		this.$store.dispatch('changeTitle',['login','#439865','<'],false);
   	},
  	methods:{
+ 		// up:function(){
+ 		//   this.$router.push("/user");
+ 		// },
       	check:function () {
       		var tel=this.tel;
       		var psd=this.psd;
@@ -64,19 +72,21 @@ export default {
       		var psd=this.psd;
       		Axios.get('http://localhost:3000/login_user',{
       			params:{
-      				tel:tel,
-      				psd:psd
+      				tel:"'"+tel+"'",
+      				psd:"'"+psd+"'"
       			}
       		}).then((res)=>{
-      			console.log("sgsdfg");
       			console.log(res.data);
-				if(res.data==3){
-					this.flag=res.data;
-					// this.$router.push("/user/user_login");
+				if(res.data.body==-1){
+					this.flag=3;
 					console.log(res.data);
 				}else{
 					console.log(res.data);
 					this.flag=4;
+					document.cookie="logined="+res.data.body;
+					document.cookie="login_id="+res.data.body;
+					// this.$router.push("/user");
+					history.go(-1);
 				}
 			}).catch((error)=>{
 			    console.log(error);
