@@ -76,12 +76,12 @@ export default {
       				psd:"'"+psd+"'"
       			}
       		}).then((res)=>{
-      			console.log(res.data);
+      			// console.log(res.data);
 				if(res.data.body==-1){
 					this.flag=3;
-					console.log(res.data);
+					// console.log(res.data);
 				}else{
-					console.log(res.data);
+					// console.log(res.data);
 					this.flag=4;
 					document.cookie="logined="+res.data.body;
 					document.cookie="login_id="+res.data.body;

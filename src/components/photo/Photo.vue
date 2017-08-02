@@ -2,8 +2,8 @@
   <div class="photo">
     <common-header></common-header>
     <ul class="photo-box">
-      <li v-for="(photo,index) in $store.state.photoList">
-        <router-link :to="'/photo/photo_detail/'+index"><img :src="photo.srcc" :data-img="photo.src" alt=""></router-link>
+      <li v-for="photo in photoList[0]">
+        <router-link :to="'/photo/photo_detail/'+photo.p_id"><img :src="photo.p_srcc" :data-img="photo.p_src" :alt="photo.p_name"></router-link>
       </li>
     </ul>
     <div class="nothing">┐(￣ー￣)┌没有了┐(￣ー￣)┌</div>
@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      
+      photoList:[]
     }
   },
   components:{
@@ -31,9 +31,18 @@ export default {
   mounted(){
     this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',true]);
 
-    Axios.get('static/photo-data.json').then((res)=>{
-        this.$store.dispatch('photoList',res.data.photoData);
+    // Axios.get('static/photo-data.json').then((res)=>{
+    //     this.$store.dispatch('photoList',res.data.photoData);
+    // });
+    Axios.get("http://localhost:3000/photo_all",{params:{}})
+    .then((res)=>{
+        this.photoList.push(JSON.parse(res.data));
+        // console.log(this.photoList[0]);
+        // console.log(res.data);
+    }).catch((error)=>{
+        console.log(error);
     });
+
     var _this=this;
     setTimeout(function(){
       _this.waterfall();

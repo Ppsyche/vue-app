@@ -91,6 +91,7 @@ export default {
       }).then((res)=>{
         if(res.data==1){
           console.log("修改成功");
+          this.$router.push("/user/user_me");
         }else{
           console.log("修改失败");
         } 

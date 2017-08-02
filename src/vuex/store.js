@@ -1,7 +1,3 @@
-/**
- * Created by apple on 17/6/22.
- */
-
 //引入相关文件
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -14,7 +10,7 @@ const state = {
   bgColor:'rgb(33, 150, 243)',
   nav:'首页',
   bol:true,
-  photoList:[]
+  // photoList:[]
 }
 
 //定义动作 事件处理方法
@@ -25,9 +21,9 @@ const mutations = {
     state.nav = status[2];
     state.bol = status[3];
   },
-  photoList(state,status){
-    state.photoList = status;
-  },
+  // photoList(state,status){
+  //   state.photoList = status;
+  // },
   // ,
   // changeBgColor(state,status){
   //   state.bgColor = status;
@@ -37,7 +33,7 @@ const mutations = {
 //对外的事件方法
 const actions = {
   changeTitle:({commit},status)=>commit('changeTitle',status),
-  photoList:({commit},status)=>commit('photoList',status)
+  // photoList:({commit},status)=>commit('photoList',status)
 }
 
 const getters = {

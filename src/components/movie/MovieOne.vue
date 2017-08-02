@@ -39,6 +39,7 @@ export default {
     return {
       movieDetails:[],
       flag:false,
+      login_id:0
     }
   },
   components:{
@@ -52,35 +53,78 @@ export default {
         // console.log(res.data.writer);
         this.movieDetails = res.data;
     });
+    if(document.cookie){
+      var arr=document.cookie.split(";")[1];
+      var new_arr=arr.split("=")[1];
+      this.login_id=new_arr;
+      this.is_collect_movie();
+    } 
   },
   methods:{
     collect:function(){
       if(document.cookie){
         this.flag=true;
-        var arr=document.cookie.split(";")[1];
-        var new_arr=arr.split("=")[1];
-        this.login_id=new_arr;
+        //因为豆瓣接口访问次数有限，且电影数量太过庞大，所以把先收藏的电影的部分信息存到自己的数据库里，哪天把豆瓣接口换了删了这条就好
         this.find_movie();
+        this.collect_movie();
       }else{
         this.$router.push("/user/user_login");
       }
-      
     },
     nocollect:function(){
       this.flag=false;
+      this.nocollect_movie();
     },
     find_movie:function(){
-      console.log(this.movieDetails.title);
       Axios.get("http://localhost:3000/find_movie",{
         params:{
           m_id:this.$route.params.id,
           m_name:this.movieDetails.title,
-          u_id:this.login_id
+          m_summary:this.movieDetails.summary
         }
       }).then((res)=>{
-        // console.log(res.data);
-        this.user_all=JSON.parse(res.data);
-        // console.log(JSON.parse(res.data));
+        
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    collect_movie:function(){
+      Axios.get("http://localhost:3000/collect_movie",{
+        params:{
+          u_id:this.login_id,
+          m_id:this.$route.params.id
+        }
+      }).then((res)=>{
+          console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    nocollect_movie:function(){
+      Axios.get("http://localhost:3000/nocollect_movie",{
+        params:{
+          u_id:this.login_id,
+          m_id:this.$route.params.id
+        }
+      }).then((res)=>{
+          console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    is_collect_movie:function(){
+      Axios.get("http://localhost:3000/is_collect_movie",{
+        params:{
+          u_id:this.login_id,
+          m_id:this.$route.params.id
+        }
+      }).then((res)=>{
+          if(res.data==1){
+            this.flag=true;
+          }else{
+            this.flag=false;
+          }
+          console.log(res.data+"aaaaaa");
       }).catch((error)=>{
           console.log(error);
       });

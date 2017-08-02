@@ -6,9 +6,9 @@
 		}
 		public function insert_user(){
 			header('Access-Control-Allow-Origin:*');
-			$name=$this->input->get('name');
-		    $tel=$this->input->get('tel');
-		    $psd=$this->input->get('psd');
+			$name=$this->input->post('name');
+		    $tel=$this->input->post('tel');
+		    $psd=$this->input->post('psd');
 		    $result=$this->user_model->repetition_user($tel);
 		    if($result){
 		    	echo 6;//电话号码重复
@@ -48,8 +48,8 @@
 		}
 		public function change_name(){
 			header('Access-Control-Allow-Origin:*');
-		    $id=$this->input->get('id');
-		    $name=$this->input->get('name');
+		    $id=$this->input->post('id');
+		    $name=$this->input->post('name');
 		    $result=$this->user_model->change_name($id,$name);
 		    if($result){
 		    	echo 1;
@@ -79,6 +79,5 @@
 		    	echo 2;
 		    } 
 		}
-
 	}
 ?>

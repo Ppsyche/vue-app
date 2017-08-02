@@ -9,7 +9,7 @@
 			<span v-if="flag==1">用户名不能为空</span>
 			<span v-else-if="flag==2">手机号不能为空</span>
 			<span v-else-if="flag==3">密码不能为空</span>
-			<span v-else-if="flag==10">用户名只能由3-15位的数字和字母组成</span>
+			<!-- <span v-else-if="flag==10">用户名只能由3-15位的数字和字母组成</span> -->
 			<span v-else-if="flag==4">请输入正确的手机号</span>
 			<span v-else-if="flag==5">密码只能由6-20位的数字和字母组成</span>
 			<span v-else-if="flag==6">手机号码已存在</span>
@@ -66,7 +66,7 @@ export default {
 			var name=this.name;
 			var tel=this.tel;
 			var psd=this.psd;
-			var regnm = /^[a-zA-Z0-9]{3,15}$/;
+			// var regnm = /^[a-zA-Z0-9]{3,15}$/;
 			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
 			// var regex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}');
 			var regex = /^[a-zA-Z0-9]{6,20}$/;
@@ -81,9 +81,11 @@ export default {
 				this.flag=2;
 			}else if(psd==""){
 				this.flag=3;
-			}else if(!regnm.test(name)){
-				this.flag=10;//后补的，只能是10了TT
-			}else if(!myreg.test(tel)){
+			}
+			// else if(!regnm.test(name)){
+			// 	this.flag=10;//后补的，只能是10了TT
+			// }
+			else if(!myreg.test(tel)){
 				this.flag=4;
 			}else if(!regex.test(psd)){
 				this.flag=5;

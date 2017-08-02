@@ -80,7 +80,7 @@ export default new Router({
       component: Photo,
     },
     {
-      path:'/photo/photo_detail/:index',
+      path:'/photo/photo_detail/:id',
       component: PhotoDetail
     },
     {
