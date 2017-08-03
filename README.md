@@ -11,7 +11,7 @@ npm install
 然后运行项目
 npm run dev
 ```
-最后打开浏览器，输入`localhost:8880`即可访问。效果图如下：
+最后打开浏览器，输入`localhost:8081`即可访问。效果图如下：
 
 ![](https://github.com/Psychee/vue-app/raw/master/gif/1.gif)
 ![](https://github.com/Psychee/vue-app/raw/master/gif/2.gif)
@@ -36,12 +36,18 @@ npm run dev
 * `/book/book_more/:name` 显示当前标签下的十条电影信息，下拉加载更多;
 * `/book/book_one/:id` 图书详情页面；
 * `/photo` 图片页面，以瀑布流的方式展示多张图片;
-* `/photo/photo_detail/:index` 显示大图;
+* `/photo/photo_detail/:id` 显示大图;
 * `/search/suggest` 搜索页面，搜索框+推荐的八条电影名称和八条图书名称。
 * `/search/search_movie/:name` 搜索电影列表。
 * `/search/search_book/:name` 搜索图书列表。
-* ` path:'/user` 用户主页。
-* ` /user/user_set` 设置页。
-* ` /user/user_me` 个人信息页。
+* `/user` 用户主页。
+* `/user/user_set` 设置页。
+* `/user/user_me` 个人信息页。
+* `/user/user_me/user_name` 修改昵称。
+* `/user/user_me/user_sex` 修改性别。
+* `/user/user_me/user_email` 修改性别。
+* `/user/user_login` 登录页。
+* `/user/user_reg` 登录页。
+
 
 

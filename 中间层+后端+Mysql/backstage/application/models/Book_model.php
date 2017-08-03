@@ -12,7 +12,7 @@
 			return $query;
 		}
 		public function collect_book($u_id,$b_id){
-			$sql="insert into t_collect_book(u_id,b_id) values('$u_id','$b_id')";
+			$sql="insert into t_collect_book(u_id,b_id,cm_time) values('$u_id','$b_id',now())";
 			$query=$this->db->query($sql);
 			return $query;
 		}
@@ -25,6 +25,12 @@
 			$sql="select * from t_collect_book where u_id=$u_id and b_id=$b_id";
 			$query=$this->db->query($sql);
 			$result=$query->result();
+			return $result;
+		}
+		public function book_num_by_id($id){
+			$sql="select count(*) as num from t_collect_book where u_id=$id";
+			$query=$this->db->query($sql);
+			$result=$query->row();
 			return $result;
 		}
 	}

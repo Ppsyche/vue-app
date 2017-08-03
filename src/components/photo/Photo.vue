@@ -34,27 +34,30 @@ export default {
     // Axios.get('static/photo-data.json').then((res)=>{
     //     this.$store.dispatch('photoList',res.data.photoData);
     // });
+    // fiddle
+    var _this=this;
     Axios.get("http://localhost:3000/photo_all",{params:{}})
     .then((res)=>{
         this.photoList.push(JSON.parse(res.data));
-        // console.log(this.photoList[0]);
-        // console.log(res.data);
+        setTimeout(function(){
+          _this.waterfall();
+          _this.showImg();
+        },1000);
     }).catch((error)=>{
         console.log(error);
     });
-
-    var _this=this;
-    setTimeout(function(){
-      _this.waterfall();
-      _this.showImg();
-    },1000);  
+    // setTimeout(function(){
+    //   _this.waterfall();
+    //   _this.showImg();
+    // },1000);  
+    
     window.onscroll=function(){
       _this.showImg();
     }   
   },
   methods:{
     waterfall(){
-      var imgNum = 2//一行摆几张图
+      var imgNum = 2;//一行摆几张图
       var lineHight = new Array(imgNum);//每排的高度
       var minHeight = 0;//高度最小的是哪排
       var left = $('.photo-box li').outerWidth(true);

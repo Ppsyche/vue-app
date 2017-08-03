@@ -80,7 +80,8 @@ export default {
         params:{
           m_id:this.$route.params.id,
           m_name:this.movieDetails.title,
-          m_summary:this.movieDetails.summary
+          m_summary:this.movieDetails.summary,
+          m_rating:this.movieDetails.rating.average
         }
       }).then((res)=>{
         

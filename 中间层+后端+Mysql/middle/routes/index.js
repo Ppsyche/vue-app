@@ -60,6 +60,16 @@ router.get('/user_by_id', function(req, res, next) {
     });
 });
 
+router.get('/user_and_collect', function(req, res, next) {
+    var id=req.query.id;
+    request.get('http://127.0.0.1/backstage/user/user_and_collect?id='+id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
 router.get('/change_name', function(req, res, next) {
     var id=req.query.id;
     var name=req.query.name;
@@ -100,7 +110,8 @@ router.get('/find_movie', function(req, res, next) {
     var m_id=req.query.m_id;
     var m_name=req.query.m_name;
     var m_summary=req.query.m_summary;
-    request.post({url:'http://127.0.0.1/backstage/movie/find_movie', form: {m_id:m_id,m_name:m_name,m_summary:m_summary}}, function (error, response, body) {
+    var m_rating=req.query.m_rating;
+    request.post({url:'http://127.0.0.1/backstage/movie/find_movie', form: {m_id:m_id,m_name:m_name,m_summary:m_summary,m_rating:m_rating}}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);
@@ -136,6 +147,16 @@ router.get('/is_collect_movie', function(req, res, next) {
     var u_id=req.query.u_id;
     var m_id=req.query.m_id;
     request.get('http://127.0.0.1/backstage/movie/is_collect_movie?u_id='+u_id+"&m_id="+m_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/collect_movie_all', function(req, res, next) {
+    var u_id=req.query.u_id;
+    request.get('http://127.0.0.1/backstage/movie/collect_movie_all?u_id='+u_id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);
@@ -212,4 +233,58 @@ router.get('/find_photo', function(req, res, next) {
     });
 });
 
+router.get('/collect_photo', function(req, res, next) {
+    var u_id=req.query.u_id;
+    var p_id=req.query.p_id;
+    // console.log(email);
+    request.get('http://127.0.0.1/backstage/photo/collect_photo?u_id='+u_id+"&p_id="+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/nocollect_photo', function(req, res, next) {
+    var u_id=req.query.u_id;
+    var p_id=req.query.p_id;
+    // console.log(email);
+    request.get('http://127.0.0.1/backstage/photo/nocollect_photo?u_id='+u_id+"&p_id="+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/is_collect_photo', function(req, res, next) {
+    var u_id=req.query.u_id;
+    var p_id=req.query.p_id;
+    request.get('http://127.0.0.1/backstage/photo/is_collect_photo?u_id='+u_id+"&p_id="+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/next_photo', function(req, res, next) {
+    var p_id=req.query.p_id;
+    request.get('http://127.0.0.1/backstage/photo/next_photo?p_id='+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/prev_photo', function(req, res, next) {
+    var p_id=req.query.p_id;
+    request.get('http://127.0.0.1/backstage/photo/prev_photo?p_id='+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
 module.exports = router;

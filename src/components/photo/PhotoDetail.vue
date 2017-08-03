@@ -2,6 +2,12 @@
   <div class="photo">
     <common-header>
       <button slot="btn" @click="up">{{$store.state.nav}}</button>
+      <button slot="icon" class="btn" v-if="!this.flag" @click="collect">
+        <i class="icon iconfont big">&#xe572;</i>  
+      </button>
+      <button slot="icon" class="btn" v-if="this.flag" @click="nocollect">
+        <i class="icon iconfont big">&#xe630;</i>
+      </button>
     </common-header>
     <v-touch @swipeleft="next" @swiperight="prev" class="photo-box" :style="bgStyle"></v-touch>
   </div>
@@ -16,7 +22,8 @@ export default {
   data() {
     return {
       id:this.$route.params.id,
-      src:""
+      src:"",
+      flag:false
     }
   },
   components:{
@@ -24,14 +31,13 @@ export default {
   },
   mounted(){
     this.$store.dispatch('changeTitle',['photo','rgb(63, 81, 181)','<',false]);
-    this.find_photo();
+    this.refresh();
   },
   computed:{
     bgStyle(){
       return {
-        background: "url('../../static/img/img"+this.id+".jpg') no-repeat center / contain #000"
-        //这里只要用this.src页面就不跳转了，没明白为啥
-        // background: "url('"+this.src+"') no-repeat center / contain #000"
+        // background: "url('../../static/img/img"+this.id+".jpg') no-repeat center / contain #000"
+        background: "url('"+this.src+"') no-repeat center / contain #000"
       }
     }
   },
@@ -40,14 +46,37 @@ export default {
       this.$router.push("/photo");
     },
     next(){
-        this.id = (parseInt(this.id)+1)%58;
-        if(this.id==0){this.id=1;}
-        this.$router.push("/photo/photo_detail/"+this.id);
+        // this.id = (parseInt(this.id)+1)%58;
+        // if(this.id==0){this.id=1;}
+        Axios.get("http://localhost:3000/next_photo",{
+          params:{
+            p_id:this.id
+          }
+        }).then((res)=>{
+          this.id=res.data;
+          this.$router.push("/photo/photo_detail/"+this.id);
+          this.refresh();
+        }).catch((error)=>{
+            console.log(error);
+        });
+        
     },
     prev(){
-        this.id = (parseInt(this.id)+57)%58;
-        if(this.id==0){this.id=58;}
-        this.$router.push("/photo/photo_detail/"+this.id);
+        // this.id = (parseInt(this.id)+57)%58;
+        // if(this.id==0){this.id=58;}
+        Axios.get("http://localhost:3000/prev_photo",{
+          params:{
+            p_id:this.id
+          }
+        }).then((res)=>{
+          console.log(res.data+"bbbbbbb");
+          this.id=res.data;
+          this.$router.push("/photo/photo_detail/"+this.id);
+          this.refresh();
+        }).catch((error)=>{
+            console.log(error);
+        });
+        
     },
     find_photo(){
       Axios.get("http://localhost:3000/find_photo",{
@@ -55,11 +84,73 @@ export default {
           p_id:this.id
         }
       }).then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         this.src=res.data;
       }).catch((error)=>{
           console.log(error);
       });
+    },
+    collect:function(){
+      if(document.cookie){
+        this.flag=true;
+        this.collect_photo();
+      }else{
+        this.$router.push("/user/user_login");
+      }
+    },
+    nocollect:function(){
+      this.flag=false;
+      this.nocollect_photo();
+    },
+    collect_photo:function(){
+      Axios.get("http://localhost:3000/collect_photo",{
+        params:{
+          u_id:this.login_id,
+          p_id:this.$route.params.id
+        }
+      }).then((res)=>{
+          console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    nocollect_photo:function(){
+      Axios.get("http://localhost:3000/nocollect_photo",{
+        params:{
+          u_id:this.login_id,
+          p_id:this.id
+        }
+      }).then((res)=>{
+          console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    is_collect_photo:function(){
+      Axios.get("http://localhost:3000/is_collect_photo",{
+        params:{
+          u_id:this.login_id,
+          p_id:this.id
+        }
+      }).then((res)=>{
+          if(res.data==1){
+            this.flag=true;
+          }else{
+            this.flag=false;
+          }
+          // console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    refresh:function(){
+      this.find_photo();
+      if(document.cookie){
+        var arr=document.cookie.split(";")[1];
+        var new_arr=arr.split("=")[1];
+        this.login_id=new_arr;
+        this.is_collect_photo();
+      }
     }
   }
 }
@@ -76,6 +167,17 @@ export default {
     bottom: 0;
     width: 100%;
   }
-
+  .btn{
+    color: #fff;
+    width: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    /*float: right;*/
+    position: absolute;
+    right: 0;
+  }
+  .btn i{
+    font-size: 2em;
+  }
 
 </style>

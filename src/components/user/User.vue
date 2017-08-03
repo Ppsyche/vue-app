@@ -22,10 +22,10 @@
       </router-link> 
     </div>
     <div class="roll">
-      <div class="one">
-        <p>0</p>
+      <router-link to="/user/collect" tag="div" class="one">
+        <p>{{collect_num}}</p>
         <p>收藏</p>
-      </div>
+      </router-link>
       <div class="one">
         <p>0</p>
         <p>阅读卷</p>
@@ -71,7 +71,9 @@ export default {
     return {
       flag:false,
       login_id:0,
-      user_all:{}
+      user:{},
+      user_all:{},
+      collect_num:0
     }
   },
   components:{
@@ -86,7 +88,7 @@ export default {
       var arr=document.cookie.split(";")[1];
       var new_arr=arr.split("=")[1];
       this.login_id=new_arr;
-      this.user_by_id();
+      this.user_and_collect();
     }else{
       this.flag=false;
     }
@@ -97,14 +99,18 @@ export default {
     up:function(){
       this.$router.push("/");
     },
-    user_by_id:function(){
-      Axios.get("http://localhost:3000/user_by_id",{
+    user_and_collect:function(){
+      Axios.get("http://localhost:3000/user_and_collect",{
         params:{
           id:this.login_id
         }
       }).then((res)=>{
         // console.log(res.data);
-        this.user_all=JSON.parse(res.data);
+        this.user=JSON.parse(res.data)
+        this.user_all=this.user.user;
+        this.collect_num=parseInt(this.user.movie_num)
+                        +parseInt(this.user.book_num)
+                        +parseInt(this.user.photo_num);
         // console.log(JSON.parse(res.data));
       }).catch((error)=>{
           console.log(error);

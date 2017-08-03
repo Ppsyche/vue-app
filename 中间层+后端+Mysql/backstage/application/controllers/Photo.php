@@ -36,6 +36,65 @@
 		    } 
 		}
 		
+		public function collect_photo(){
+			header('Access-Control-Allow-Origin:*');
+		    $u_id=$this->input->get('u_id');
+		    $p_id=$this->input->get('p_id');
+		    $result=$this->photo_model->collect_photo($u_id,$p_id);
+		    if($result){
+		    	echo 1;
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
+		public function nocollect_photo(){
+			header('Access-Control-Allow-Origin:*');
+		    $u_id=$this->input->get('u_id');
+		    $p_id=$this->input->get('p_id');
+		    $result=$this->photo_model->nocollect_photo($u_id,$p_id);
+		    if($result){
+		    	echo 1;
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
+		public function is_collect_photo(){
+			header('Access-Control-Allow-Origin:*');
+		    $u_id=$this->input->get('u_id');
+		    $p_id=$this->input->get('p_id');
+		    $result=$this->photo_model->is_collect_photo($u_id,$p_id);
+		    if($result){
+		    	echo 1;
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
+		public function next_photo(){
+			header('Access-Control-Allow-Origin:*');
+			$p_id=$this->input->get('p_id');
+		    $result=$this->photo_model->next_photo($p_id);
+		    if($result){
+		    	// var_dump($result);
+		    	echo $result->p_id;
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
+		public function prev_photo(){
+			header('Access-Control-Allow-Origin:*');
+			$p_id=$this->input->get('p_id');
+		    $result=$this->photo_model->prev_photo($p_id);
+		    if($result){
+		    	// var_dump($result);
+		    	echo $result->p_id;
+		    }else{
+		    	echo 0;
+		    } 
+		}
 
 	}
 ?>

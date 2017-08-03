@@ -3,6 +3,9 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('user_model');
+			$this->load->model('movie_model');
+			$this->load->model('book_model');
+			$this->load->model('photo_model');
 		}
 		public function insert_user(){
 			header('Access-Control-Allow-Origin:*');
@@ -45,6 +48,33 @@
 		    }else{
 		    	echo -1;
 		    } 
+		}
+		public function user_and_collect(){
+			header('Access-Control-Allow-Origin:*');
+		    $id=$this->input->get('id');
+		    $result=$this->user_model->user_by_id($id);
+		    if($result){
+		    	$data['user']=$result;
+		    }else{
+		    	echo -1;
+		    } 
+		    $result=$this->movie_model->movie_num_by_id($id);
+	    	if(!$result){
+	    		$result->num=0;
+	    	}
+	    	$data['movie_num']=$result->num;
+	    	$result=$this->book_model->book_num_by_id($id);
+	    	if(!$result){
+	    		$result->num=0;
+	    	}
+	    	$data['book_num']=$result->num;
+	    	$result=$this->photo_model->photo_num_by_id($id);
+	    	if(!$result){
+	    		$result->num=0;
+	    	}
+	    	$data['photo_num']=$result->num;
+	    	echo json_encode($data);
+		    
 		}
 		public function change_name(){
 			header('Access-Control-Allow-Origin:*');

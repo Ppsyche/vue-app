@@ -25,6 +25,10 @@ import UserReg from '@/components/user/UserReg'
 import UserName from '@/components/user/UserName'
 import UserSex from '@/components/user/UserSex'
 import UserEmail from '@/components/user/UserEmail'
+import UserCollect from '@/components/user/UserCollect'
+import UserCollectMovie from '@/components/user/UserCollectMovie'
+import UserCollectBook from '@/components/user/UserCollectBook'
+import UserCollectPhoto from '@/components/user/UserCollectPhoto'
 
 Vue.use(Router)
 
@@ -127,6 +131,19 @@ export default new Router({
     {
       path:'/user/user_me/user_email',
       component: UserEmail
+    },
+    {
+      path:'/user/collect',
+      redirect:'/user/collect/collect_movie'
+    },
+    {
+      path: '/user/collect',
+      component: UserCollect,
+      children: [
+        { path: "/user/collect/collect_movie", component: UserCollectMovie },
+        { path: "/user/collect/collect_book", component: UserCollectBook },
+        { path: "/user/collect/collect_photo", component: UserCollectPhoto }
+      ]
     },
   ]
 })

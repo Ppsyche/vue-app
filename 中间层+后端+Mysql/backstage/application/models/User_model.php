@@ -7,7 +7,7 @@
 		    return $result;
 		}
 		public function insert_user($name,$tel,$psd){
-		    $sql="insert into t_user(name,tel,password) values('$name','$tel','$psd')";
+		    $sql="insert into t_user(name,tel,password,time) values('$name','$tel','$psd',now())";
 		    $query=$this->db->query($sql);
 		    return $query;
 		}
