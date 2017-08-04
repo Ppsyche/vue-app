@@ -6,8 +6,8 @@
 		    $result=$query->result();
 		    return $result;
 		}
-		public function add_movie($m_id,$m_name,$m_summary,$m_rating){
-			$sql="insert into t_movie(m_id,m_name,m_summary,m_rating) values('$m_id','$m_name','$m_summary','$m_rating')";
+		public function add_movie($m_id,$m_name,$m_summary,$m_rating,$m_img){
+			$sql="insert into t_movie(m_id,m_name,m_summary,m_rating,m_img) values('$m_id','$m_name','$m_summary','$m_rating','$m_img')";
 			$query=$this->db->query($sql);
 			return $query;
 		}
@@ -34,7 +34,7 @@
 			return $result;
 		}
 		public function collect_movie_all($u_id){
-			$sql="select t_movie.m_id,t_movie.m_name,t_movie.m_summary,t_movie.m_rating,t_collect_movie.cm_time from t_collect_movie,t_movie where t_collect_movie.u_id=$u_id and t_collect_movie.m_id=t_movie.m_id";
+			$sql="select t_movie.m_id,t_movie.m_name,t_movie.m_summary,t_movie.m_rating,t_movie.m_img,t_collect_movie.cm_time from t_collect_movie,t_movie where t_collect_movie.u_id=$u_id and t_collect_movie.m_id=t_movie.m_id";
 			$query=$this->db->query($sql);
 			$result=$query->result();
 			return $result;

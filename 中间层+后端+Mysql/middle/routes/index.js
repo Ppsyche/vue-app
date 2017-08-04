@@ -111,7 +111,8 @@ router.get('/find_movie', function(req, res, next) {
     var m_name=req.query.m_name;
     var m_summary=req.query.m_summary;
     var m_rating=req.query.m_rating;
-    request.post({url:'http://127.0.0.1/backstage/movie/find_movie', form: {m_id:m_id,m_name:m_name,m_summary:m_summary,m_rating:m_rating}}, function (error, response, body) {
+    var m_img=req.query.m_img;
+    request.post({url:'http://127.0.0.1/backstage/movie/find_movie', form: {m_id:m_id,m_name:m_name,m_summary:m_summary,m_rating:m_rating,m_img:m_img}}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);
@@ -171,7 +172,9 @@ router.get('/find_book', function(req, res, next) {
     var b_id=req.query.b_id;
     var b_name=req.query.b_name;
     var b_summary=req.query.b_summary;
-    request.post({url:'http://127.0.0.1/backstage/book/find_book', form: {b_id:b_id,b_name:b_name,b_summary:b_summary}}, function (error, response, body) {
+    var b_average=req.query.b_average;
+    var b_img=req.query.b_img;
+    request.post({url:'http://127.0.0.1/backstage/book/find_book', form: {b_id:b_id,b_name:b_name,b_summary:b_summary,b_average:b_average,b_img:b_img}}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);
@@ -207,6 +210,16 @@ router.get('/is_collect_book', function(req, res, next) {
     var u_id=req.query.u_id;
     var b_id=req.query.b_id;
     request.get('http://127.0.0.1/backstage/book/is_collect_book?u_id='+u_id+"&b_id="+b_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/collect_book_all', function(req, res, next) {
+    var u_id=req.query.u_id;
+    request.get('http://127.0.0.1/backstage/book/collect_book_all?u_id='+u_id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);
@@ -281,6 +294,16 @@ router.get('/next_photo', function(req, res, next) {
 router.get('/prev_photo', function(req, res, next) {
     var p_id=req.query.p_id;
     request.get('http://127.0.0.1/backstage/photo/prev_photo?p_id='+p_id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            res.json(body);
+        }
+    });
+});
+
+router.get('/collect_photo_all', function(req, res, next) {
+    var u_id=req.query.u_id;
+    request.get('http://127.0.0.1/backstage/photo/collect_photo_all?u_id='+u_id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body);
             res.json(body);

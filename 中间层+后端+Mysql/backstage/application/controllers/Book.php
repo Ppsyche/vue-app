@@ -9,11 +9,13 @@
 		    $b_id=$this->input->post('b_id');
 		    $b_name=$this->input->post('b_name');
 		    $b_summary=$this->input->post('b_summary');
+		    $b_average=$this->input->post('b_average');
+		    $b_img=$this->input->post('b_img');
 		    $result=$this->book_model->find_book($b_id);
 		    if($result){
 		    	echo 1;
 		    }else{
-		    	$result=$this->book_model->add_book($b_id,$b_name,$b_summary);
+		    	$result=$this->book_model->add_book($b_id,$b_name,$b_summary,$b_average,$b_img);
 		    	if($result){
 		    		echo 2;
 		    	}else{
@@ -51,6 +53,17 @@
 		    $result=$this->book_model->is_collect_book($u_id,$b_id);
 		    if($result){
 		    	echo 1;
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
+		public function collect_book_all(){
+			header('Access-Control-Allow-Origin:*');
+		    $u_id=$this->input->get('u_id');
+		    $result=$this->book_model->collect_book_all($u_id);
+		    if($result){
+		    	echo json_encode($result);
 		    }else{
 		    	echo 0;
 		    } 

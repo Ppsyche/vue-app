@@ -56,7 +56,6 @@ export default {
         this.bookDetails = res.data;
     });
     if(document.cookie){
-      console.log("aaaaa");
       var arr=document.cookie.split(";")[1];
       var new_arr=arr.split("=")[1];
       this.login_id=new_arr;
@@ -83,10 +82,12 @@ export default {
         params:{
           b_id:this.$route.params.id,
           b_name:this.bookDetails.title,
-          b_summary:this.bookDetails.summary
+          b_summary:this.bookDetails.summary,
+          b_average:this.bookDetails.rating.average,
+          b_img:this.bookDetails.images.small
         }
       }).then((res)=>{
-        
+        console.log(res.data);
       }).catch((error)=>{
           console.log(error);
       });

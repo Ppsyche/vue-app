@@ -96,5 +96,24 @@
 		    } 
 		}
 
+		public function collect_photo_all(){
+			header('Access-Control-Allow-Origin:*');
+			$u_id=$this->input->get('u_id');
+		    $result=$this->photo_model->collect_photo_group($u_id);
+		    if($result){
+		    	$aresult=$result;
+		    	for ($i=0; $i<count($aresult); $i++) { 
+		    		$result=$this->photo_model->collect_photo_time($aresult[$i]->time,$u_id);
+		    		// var_dump($result);
+		    		$arr[$i]["time"]=$aresult[0]->time;
+		    		$arr[$i]["photo"]=$result;
+		    		// $arr[$i]={"time":$aresult[0]->time,"photo":$result}
+		    	}
+		    	echo json_encode($arr);
+		    }else{
+		    	echo 0;
+		    } 
+		}
+
 	}
 ?>

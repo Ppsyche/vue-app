@@ -10,11 +10,12 @@
 		    $m_name=$this->input->post('m_name');
 		    $m_summary=$this->input->post('m_summary');
 		    $m_rating=$this->input->post('m_rating');
+		    $m_img=$this->input->post('m_img');
 		    $result=$this->movie_model->find_movie($m_id);
 		    if($result){
 		    	echo 1;
 		    }else{
-		    	$result=$this->movie_model->add_movie($m_id,$m_name,$m_summary,$m_rating);
+		    	$result=$this->movie_model->add_movie($m_id,$m_name,$m_summary,$m_rating,$m_img);
 		    	if($result){
 		    		echo 2;
 		    	}else{
@@ -64,7 +65,7 @@
 		    if($result){
 		    	echo json_encode($result);
 		    }else{
-		    	echo -1;
+		    	echo 0;
 		    } 
 		}
 

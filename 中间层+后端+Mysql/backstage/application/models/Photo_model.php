@@ -53,5 +53,19 @@
 			return $result;
 		}
 
+		public function collect_photo_group($u_id){
+			$sql="select date(cp_time) as time from t_collect_photo where u_id=$u_id group by date(cp_time)";
+			$query=$this->db->query($sql);
+			$result=$query->result();
+			return $result;
+		}
+
+		public function collect_photo_time($time,$u_id){
+			$sql="select * from t_collect_photo where date(cp_time)='$time' and u_id=$u_id";
+			$query=$this->db->query($sql);
+			$result=$query->result();
+			return $result;
+		}
+
 	}
 ?>
