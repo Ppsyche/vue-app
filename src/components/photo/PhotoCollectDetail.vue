@@ -23,6 +23,7 @@ export default {
     return {
       id:this.$route.params.id,
       src:"",
+      login_id:0,
       flag:false
     }
   },
@@ -43,40 +44,12 @@ export default {
   },
   methods:{
     up:function(){
-      this.$router.push("/photo");
+      this.$router.push("/user/collect/collect_photo");
       // history.go(-1);
     },
-    next(){
-        // this.id = (parseInt(this.id)+1)%58;
-        // if(this.id==0){this.id=1;}
-        Axios.get("http://localhost:3000/next_photo",{
-          params:{
-            p_id:this.id
-          }
-        }).then((res)=>{
-          this.id=res.data;
-          this.$router.push("/photo/photo_detail/"+this.id);
-          this.refresh();
-        }).catch((error)=>{
-            console.log(error);
-        });
-        
+    next(){     
     },
-    prev(){
-        // this.id = (parseInt(this.id)+57)%58;
-        // if(this.id==0){this.id=58;}
-        Axios.get("http://localhost:3000/prev_photo",{
-          params:{
-            p_id:this.id
-          }
-        }).then((res)=>{
-          this.id=res.data;
-          this.$router.push("/photo/photo_detail/"+this.id);
-          this.refresh();
-        }).catch((error)=>{
-            console.log(error);
-        });
-        
+    prev(){      
     },
     find_photo(){
       Axios.get("http://localhost:3000/find_photo",{

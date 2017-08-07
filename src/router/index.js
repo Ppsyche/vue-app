@@ -13,6 +13,7 @@ import BookMore from '@/components/book/BookMore'
 import BookOne from '@/components/book/BookOne'
 import Photo from '@/components/photo/Photo'
 import PhotoDetail from '@/components/photo/PhotoDetail'
+import PhotoCollectDetail from '@/components/photo/PhotoCollectDetail'
 import Search from '@/components/search/Search'
 import SearchSuggest from '@/components/search/SearchSuggest'
 import SearchMovie from '@/components/search/SearchMovie'
@@ -86,6 +87,10 @@ export default new Router({
     {
       path:'/photo/photo_detail/:id',
       component: PhotoDetail
+    },
+    {
+      path:'/photo/photo_collect_detail/:id',
+      component: PhotoCollectDetail
     },
     {
       path:'/search',

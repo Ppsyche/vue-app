@@ -285,21 +285,41 @@ router.get('/next_photo', function(req, res, next) {
     var p_id=req.query.p_id;
     request.get('http://127.0.0.1/backstage/photo/next_photo?p_id='+p_id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body);
+            // console.log(body);
             res.json(body);
         }
     });
 });
 
+// router.get('/next_collect_photo', function(req, res, next) {
+//     var p_id=req.query.p_id;
+//     request.get('http://127.0.0.1/backstage/photo/next_collect_photo?p_id='+p_id, function (error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             // console.log(body);
+//             res.json(body);
+//         }
+//     });
+// });
+
 router.get('/prev_photo', function(req, res, next) {
     var p_id=req.query.p_id;
     request.get('http://127.0.0.1/backstage/photo/prev_photo?p_id='+p_id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body);
+            // console.log(body);
             res.json(body);
         }
     });
 });
+
+// router.get('/prev_collect_photo', function(req, res, next) {
+//     var p_id=req.query.p_id;
+//     request.get('http://127.0.0.1/backstage/photo/prev_collect_photo?p_id='+p_id, function (error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             // console.log(body);
+//             res.json(body);
+//         }
+//     });
+// });
 
 router.get('/collect_photo_all', function(req, res, next) {
     var u_id=req.query.u_id;

@@ -61,7 +61,7 @@
 		}
 
 		public function collect_photo_time($time,$u_id){
-			$sql="select * from t_collect_photo where date(cp_time)='$time' and u_id=$u_id";
+			$sql="select t_photo.p_id,t_photo.p_src from t_collect_photo,t_photo where t_collect_photo.p_id=t_photo.p_id and date(t_collect_photo.cp_time)='$time' and t_collect_photo.u_id=$u_id";
 			$query=$this->db->query($sql);
 			$result=$query->result();
 			return $result;

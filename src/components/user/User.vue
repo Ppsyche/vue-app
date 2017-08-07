@@ -106,7 +106,7 @@ export default {
         }
       }).then((res)=>{
         // console.log(res.data);
-        this.user=JSON.parse(res.data)
+        this.user=JSON.parse(res.data);
         this.user_all=this.user.user;
         this.collect_num=parseInt(this.user.movie_num)
                         +parseInt(this.user.book_num)

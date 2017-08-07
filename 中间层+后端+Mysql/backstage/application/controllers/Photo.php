@@ -84,6 +84,18 @@
 		    } 
 		}
 
+		// public function next_collect_photo(){
+		// 	header('Access-Control-Allow-Origin:*');
+		// 	$p_id=$this->input->get('p_id');
+		//     $result=$this->photo_model->next_collect_photo($p_id);
+		//     if($result){
+		//     	// var_dump($result);
+		//     	echo $result->p_id;
+		//     }else{
+		//     	echo 0;
+		//     } 
+		// }
+
 		public function prev_photo(){
 			header('Access-Control-Allow-Origin:*');
 			$p_id=$this->input->get('p_id');
@@ -95,6 +107,18 @@
 		    	echo 0;
 		    } 
 		}
+		
+		// public function prev_collect_photo(){
+		// 	header('Access-Control-Allow-Origin:*');
+		// 	$p_id=$this->input->get('p_id');
+		//     $result=$this->photo_model->prev_collect_photo($p_id);
+		//     if($result){
+		//     	// var_dump($result);
+		//     	echo $result->p_id;
+		//     }else{
+		//     	echo 0;
+		//     } 
+		// }
 
 		public function collect_photo_all(){
 			header('Access-Control-Allow-Origin:*');
@@ -105,7 +129,7 @@
 		    	for ($i=0; $i<count($aresult); $i++) { 
 		    		$result=$this->photo_model->collect_photo_time($aresult[$i]->time,$u_id);
 		    		// var_dump($result);
-		    		$arr[$i]["time"]=$aresult[0]->time;
+		    		$arr[$i]["time"]=$aresult[$i]->time;
 		    		$arr[$i]["photo"]=$result;
 		    		// $arr[$i]={"time":$aresult[0]->time,"photo":$result}
 		    	}

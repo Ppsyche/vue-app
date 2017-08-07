@@ -1,18 +1,18 @@
 <template>
   <div class="collect-book">
     <div class="book-list" v-for="book in bookList" v-show="bookList">
-      <router-link :to="'/book/book_one/'+book.m_id">
+      <router-link :to="'/book/book_one/'+book.b_id">
         <div class="book">
           <div class="top">
             <div class="img">
-              <img :src="book.m_img" :alt="book.m_name">
+              <img :src="book.b_img" :alt="book.b_name">
             </div>
             <div class="text">
-              <p class="name">{{book.m_name}}<span>({{book.m_average}})</span></p>
-              <p class="summary">简介：{{book.m_summary}}</p>
+              <p class="name">{{book.b_name}}<span>({{book.b_average}})</span></p>
+              <p class="summary">简介：{{book.b_summary}}</p>
             </div>
           </div>        
-          <p class="time">收藏时间：{{book.cm_time}}</p>
+          <p class="time">收藏时间：{{book.cb_time}}</p>
         </div>
       </router-link>
     </div>

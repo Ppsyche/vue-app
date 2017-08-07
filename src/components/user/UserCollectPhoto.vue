@@ -1,8 +1,9 @@
 <template>
   <div class="collect-photo">
     <div class="photo-list" v-for="photo in photoList" v-show="photoList">
-      <router-link :to="'/photo/photo_one/'+photo.m_id">
-       
+      <p>{{photo.time}}</p>
+      <router-link :to="'/photo/photo_collect_detail/'+img.p_id" v-for="img in photo.photo">
+        <img :src="img.p_src" alt=""> 
       </router-link>
     </div>
     <div class="nothing" v-show="!photoList">
@@ -58,13 +59,22 @@
     margin-top: 1.63rem;
   }
   .photo-list{
-    padding: 0.4rem;
+    padding: .1rem .4rem .4rem;
     /*margin-top: 0.4rem;*/
   }
   
   .nothing{
     text-align: center;
     font-size: .3rem; 
+    margin-top: 2rem;
+  }
+  .photo-list p{
+    color:#888;
+  }
+  img{
+    margin: .1rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
 
