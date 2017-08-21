@@ -13,16 +13,8 @@ npm run dev
 ```
 最后打开浏览器，输入`localhost:8081`即可访问。效果图如下：
 
-![](https://github.com/Psychee/vue-app/raw/master/gif/1.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/2.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/3.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/4.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/5.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/6.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/7.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/8.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/9.gif)
-![](https://github.com/Psychee/vue-app/raw/master/gif/10.gif)
+![](https://github.com/Psychee/vue-app/raw/master/gif/show.gif)
+
 
 注意：由于接口为免费版，一分钟最多访问40次，请勿过于频繁的操作。
 
@@ -37,6 +29,7 @@ npm run dev
 * `/book/book_one/:id` 图书详情页面；
 * `/photo` 图片页面，以瀑布流的方式展示多张图片;
 * `/photo/photo_detail/:id` 显示大图;
+* `/photo/photo_collect_detail/:id'` 显示收藏大图;
 * `/search/suggest` 搜索页面，搜索框+推荐的八条电影名称和八条图书名称。
 * `/search/search_movie/:name` 搜索电影列表。
 * `/search/search_book/:name` 搜索图书列表。
@@ -47,7 +40,10 @@ npm run dev
 * `/user/user_me/user_sex` 修改性别。
 * `/user/user_me/user_email` 修改性别。
 * `/user/user_login` 登录页。
-* `/user/user_reg` 登录页。
+* `/user/user_reg` 注册页。
+* `/user/collect/collect_movie` 电影收藏页。
+* `/user/collect/collect_book` 图书收藏页。
+* `/user/collect/collect_photo` 图片收藏页。
 
 
 
